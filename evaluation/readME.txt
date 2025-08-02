@@ -60,3 +60,27 @@ Submit the project folder link only.
 All changes saved
 
 Enter your answer here
+
+
+ Resolving deltas: 100% (6/6), completed with 6 local objects.
+To https://github.com/solankiamn8/masai.git
+   d86f1e2..6f16f23  master -> master
+PS C:\js\learn\unit5\assignments\sprint-01\day-4\evaluation\ecommerce-api> node server.js
+C:\js\learn\unit5\assignments\sprint-01\day-4\evaluation\ecommerce-api\node_modules\router\lib\route.js:228
+        throw new TypeError('argument handler must be a function')
+        ^
+
+TypeError: argument handler must be a function
+    at Route.<computed> [as get] (C:\js\learn\unit5\assignments\sprint-01\day-4\evaluation\ecommerce-api\node_modules\router\lib\route.js:228:15)
+    at Router.<computed> [as get] (C:\js\learn\unit5\assignments\sprint-01\day-4\evaluation\ecommerce-api\node_modules\router\index.js:448:19)
+    at Object.<anonymous> (C:\js\learn\unit5\assignments\sprint-01\day-4\evaluation\ecommerce-api\routes\product.routes.js:7:8)
+    at Module._compile (node:internal/modules/cjs/loader:1730:14)
+    at Object..js (node:internal/modules/cjs/loader:1895:10)
+    at Module.load (node:internal/modules/cjs/loader:1465:32)
+    at Function._load (node:internal/modules/cjs/loader:1282:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)
+    at Module.require (node:internal/modules/cjs/loader:1487:12)
+
+Node.js v22.17.0
+PS C:\js\learn\unit5\assignments\sprint-01\day-4\evaluation\ecommerce-api> 
