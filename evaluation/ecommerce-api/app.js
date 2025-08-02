@@ -3,10 +3,10 @@ const app = express()
 
 app.use(express.json());
 
-const productRoutes = require("./routes/product.routes")
-const userRoutes = require("./routes/user.routes")
-const orderRoutes = require("./routes/order.routes")
-const analyticsRoutes = require("./routes/analytics.routes")
+const productRoutes = require("./routes/product.routes.js")
+const userRoutes = require("./routes/user.routes.js")
+const orderRoutes = require("./routes/order.routes.js")
+const analyticsRoutes = require("./routes/analytics.routes.js")
 
 app.use("/products", productRoutes)
 app.use("/users", userRoutes)

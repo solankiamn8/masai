@@ -23,7 +23,7 @@ exports.updateProduct = async (req, res) => {
 }
 
 
-exports.deleteProducts = async (req, res) => {
+exports.deleteProduct = async (req, res) => {
     await Product.findByIdAndDelete(req.params.id)
     res.sendStatus(204)
 }
