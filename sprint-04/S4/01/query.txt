@@ -1,0 +1,58 @@
+// Task 1: Calculate the total sales amount for each product category
+db.sales.aggregate([
+  { $group: { _id: "$category", totalSales: { $sum: "$amount" } } }
+])
+
+// Task 2: Determine the month-wise total sales amount
+db.sales.aggregate([
+  { $addFields: { month: { $month: { $dateFromString: { dateString: "$date" } } } } },
+  { $group: { _id: "$month", totalSales: { $sum: "$amount" } } },
+  { $sort: { _id: 1 } }
+])
+
+// Task 3: Identify the highest-selling product (by revenue)
+db.sales.aggregate([
+  { $group: { _id: "$product", totalRevenue: { $sum: "$amount" } } },
+  { $sort: { totalRevenue: -1 } },
+  { $limit: 1 }
+])
+
+// Task 4: Find the average sale amount across all transactions
+db.sales.aggregate([
+  { $group: { _id: null, avgSale: { $avg: "$amount" } } }
+])
+
+// Task 5: Count the number of sales made in each month
+db.sales.aggregate([
+  { $addFields: { month: { $month: { $dateFromString: { dateString: "$date" } } } } },
+  { $group: { _id: "$month", salesCount: { $count: {} } } },
+  { $sort: { _id: 1 } }
+])
+
+// Task 6: Determine the total sales per region
+db.sales.aggregate([
+  { $group: { _id: "$region", totalSales: { $sum: "$amount" } } }
+])
+
+// Task 7: Identify the top 3 highest revenue-generating products
+db.sales.aggregate([
+  { $group: { _id: "$product", totalRevenue: { $sum: "$amount" } } },
+  { $sort: { totalRevenue: -1 } },
+  { $limit: 3 }
+])
+
+// Task 8: Find the total number of sales transactions per category
+db.sales.aggregate([
+  { $group: { _id: "$category", transactionCount: { $count: {} } } }
+])
+
+// Task 9: Determine the average sales amount for each region
+db.sales.aggregate([
+  { $group: { _id: "$region", avgSale: { $avg: "$amount" } } }
+])
+
+// Task 10: Find the total sales for Electronics and Fashion categories separately
+db.sales.aggregate([
+  { $match: { category: { $in: ["Electronics", "Fashion"] } } },
+  { $group: { _id: "$category", totalSales: { $sum: "$amount" } } }
+])
