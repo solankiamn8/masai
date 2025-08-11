@@ -1,9 +1,13 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
-let publisherSchema = new mongoose.Schema({
-    name: {type: String, required: true, unique: true },
-    location: {type: String},
-    yearEstablished: {type: Number, min: 1950},
+const publisherSchema = new mongoose.Schema({
+  name: { type: String, required: true, unique: true },
+  location: String,
+  yearEstablished: { type: Number, min: 1950 },
 }, {
-    timestamps: true
-})
+  timestamps: true,
+});
+
+const Publisher = mongoose.model('Publisher', publisherSchema);
+
+module.exports = Publisher;

@@ -10,6 +10,8 @@ const app = express()
 connectDB();
 
 app.use(express.json())
+app.use(requestTimeStamp);
+
 app.use('/api/publishers', publisherRoutes)
 app.use('/api/games', gameRoutes)
 

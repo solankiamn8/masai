@@ -22,15 +22,17 @@ exports.getGames = async(req, res)=>{
         res.status(500).json({message: 'Server error', error: err.message})
     }
 }
+
 exports.getGameById = async(req, res)=>{
     try {
-        const game = await Publisher.findById((req.params.id).populate('publisher', 'name location'))
-        if(!game) return res.status(404).json({message: 'Game Not Found'})
-        res.json({requestTimeStamp: req.requestTimeStamp, data: game})
+        const game = await Game.findById(req.params.id).populate('publisher', 'name location');
+        if(!game) return res.status(404).json({message: 'Game Not Found'});
+        res.json({requestTimeStamp: req.requestTimeStamp, data: game});
     } catch (err) {
-        res.status(500).json({message: 'Server error', error: err.message})
+        res.status(500).json({message: 'Server error', error: err.message});
     }
 }
+
 exports.updateGame = async(req, res)=>{
     try {
         if(req.body.publisher){

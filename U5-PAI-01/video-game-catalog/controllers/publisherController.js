@@ -48,12 +48,15 @@ exports.deletePublisher = async(req, res)=>{
 }
 exports.getGameByPublisher = async(req, res)=>{
     try {
-        const publisherId = await Publisher.findByIdAndDelete(req.params.publisherId)
-        const games = await Game.find({publisherId }).populate('publisher', 'name location')
-        res.json({requestTimeStamp: req.requestTimeStamp, data: games})
+        const publisherExists = await Publisher.findById(req.params.publisherId);
+        if (!publisherExists) return res.status(404).json({ message: 'Publisher Not Found' });
+
+        const games = await Game.find({ publisher: req.params.publisherId }).populate('publisher', 'name location');
+        res.json({ requestTimeStamp: req.requestTimeStamp, data: games });
     } catch (err) {
-        res.status(500).json({message: 'Server error', error: err.message})
+        res.status(500).json({ message: 'Server error', error: err.message });
     }
 }
+
 
 
