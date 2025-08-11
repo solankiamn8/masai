@@ -1,0 +1,93 @@
+[
+    {
+      "title": "The Legend of Zelda: Breath of the Wild",
+      "platform": "Nintendo Switch",
+      "genre": "Action-Adventure",
+      "releaseYear": 2017
+    },
+    {
+      "title": "God of War",
+      "platform": "PlayStation 4",
+      "genre": "Action",
+      "releaseYear": 2018
+    },
+    {
+      "title": "Halo Infinite",
+      "platform": "Xbox Series X",
+      "genre": "First-Person Shooter",
+      "releaseYear": 2021
+    },
+    {
+      "title": "Red Dead Redemption 2",
+      "platform": "PlayStation 4",
+      "genre": "Action-Adventure",
+      "releaseYear": 2018
+    },
+    {
+      "title": "Cyberpunk 2077",
+      "platform": "PC",
+      "genre": "RPG",
+      "releaseYear": 2020
+    },
+    {
+      "title": "Minecraft",
+      "platform": "Multi-platform",
+      "genre": "Sandbox",
+      "releaseYear": 2011
+    },
+    {
+      "title": "Elden Ring",
+      "platform": "PlayStation 5",
+      "genre": "Action RPG",
+      "releaseYear": 2022
+    },
+    {
+      "title": "Super Mario Odyssey",
+      "platform": "Nintendo Switch",
+      "genre": "Platformer",
+      "releaseYear": 2017
+    },
+    {
+      "title": "Call of Duty: Modern Warfare II",
+      "platform": "PC",
+      "genre": "First-Person Shooter",
+      "releaseYear": 2022
+    },
+    {
+      "title": "Horizon Forbidden West",
+      "platform": "PlayStation 5",
+      "genre": "Action RPG",
+      "releaseYear": 2022
+    },
+    {
+      "title": "The Witcher 3: Wild Hunt",
+      "platform": "PC",
+      "genre": "RPG",
+      "releaseYear": 2015
+    },
+    {
+      "title": "Fortnite",
+      "platform": "Multi-platform",
+      "genre": "Battle Royale",
+      "releaseYear": 2017
+    },
+    {
+      "title": "Apex Legends",
+      "platform": "Multi-platform",
+      "genre": "Battle Royale",
+      "releaseYear": 2019
+    },
+    {
+      "title": "Genshin Impact",
+      "platform": "PC",
+      "genre": "Action RPG",
+      "releaseYear": 2020
+    },
+    {
+      "title": "Animal Crossing: New Horizons",
+      "platform": "Nintendo Switch",
+      "genre": "Simulation",
+      "releaseYear": 2020
+    }
+  ]
+  
