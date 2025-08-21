@@ -3,8 +3,11 @@ const express = require("express")
 const authRouter = require('./routes/authRoutes');
 const postRouter = require('./routes/postRoutes');
 const analyticsRouter = require('./routes/analyticsRoutes');
+const connectToDB = require('./config/db');
 
 const app = express();
+
+connectToDB(process.env.MONGO_URI)
 
 app.use(express.json());    // Global Middleware
 
