@@ -65,3 +65,31 @@ Submit you’re Github’s repository link , ensure that you’re submitting spe
 All changes saved
 
 Enter your answer here
+
+function solveMat(mat) {
+  let h = mat.length
+  let w = mat[0].length
+  
+  mat = mat.map(row=>row.map(Number))
+  
+  // first row
+  let dp = mat[0].slice();
+  
+  for(let i=1; i<h; i++){
+    let newDp = Array(w).fill(0); // new row values
+    
+    for(let j=0; j<w; j++){
+      let maxPrev = dp[j] //straight down
+      if(j>0) maxPrev = Math.max(maxPrev, dp[j-1])//above-left
+      if(j<w-1) maxPrev = Math.max(maxPrev, dp[j+1])//above-right
+      console.log(i,j,mat[i][j],dp[j],mat[i][j]+dp[j])
+      newDp = mat[i][j] + maxPrev;
+    }
+    
+    dp = newDp //next row
+    
+  }
+  console.log(dp)
+  // return Math.max(...dp)
+}
+
