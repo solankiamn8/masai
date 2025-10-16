@@ -1,4 +1,5 @@
 import { Coffee } from "./Coffee";
+
 export abstract class CoffeeDecorator implements Coffee {
   protected coffee: Coffee;
   constructor(coffee: Coffee) {

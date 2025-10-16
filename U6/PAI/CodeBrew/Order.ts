@@ -8,7 +8,7 @@ export class Order {
   private static idCounter = 1;
   public id: number;
   private coffee: Coffee;
-  private paymentStrategy: PaymentStrategy;
+  private paymentStrategy!: PaymentStrategy;
   private state: OrderState = "Pending";
   private observers: Observer[] = [];
 

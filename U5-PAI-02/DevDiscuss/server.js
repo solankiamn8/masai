@@ -19,10 +19,6 @@ app.use('/test', (req, res)=>{
     res.status(200).json({msg: "This is a test route"})
 })
 
-app.use("*", (req, res)=>{
-    res.status(404).json({msg: "Wrong request"})
-})
-
 const PORT = process.env.PORT || 3000
 
 app.listen(PORT, ()=>{

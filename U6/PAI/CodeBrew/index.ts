@@ -30,7 +30,7 @@ function main(){
     // Step 6: Progress order through states
     order.proceedToNextState()  // Preparing
     order.proceedToNextState()  // Ready -> Notifies Display
-    order.proceedToNextState()  // Completed
+    order.proceedToNextState()  //
 }
 
 main()

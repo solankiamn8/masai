@@ -1,56 +1,46 @@
 const Post = require('../models/Post');
-const Tag = require('../models/Tag');
 
-async function ensureTags(tagNames = []) {
-  if (!Array.isArray(tagNames) || tagNames.length === 0) return [];
-  const normalized = [...new Set(tagNames.map(t => String(t).toLowerCase().trim()).filter(Boolean))];
-  const existing = await Tag.find({ name: { $in: normalized } });
-  const existingMap = new Map(existing.map(t => [t.name, t._id]));
-  const toCreate = normalized.filter(n => !existingMap.has(n)).map(name => ({ name }));
-  const created = toCreate.length ? await Tag.insertMany(toCreate) : [];
-  return [...existing.map(t => t._id), ...created.map(t => t._id)];
-}
-
-exports.createPost = async (req, res) => {
+const createPost = async (req, res) => {
   try {
     const { title, content, tags = [] } = req.body;
-    const tagIds = await ensureTags(tags);
+    const cleanTags = [...new Set(tags.map(t => String(t).toLowerCase().trim()))]; // unique + normalized
+
     const post = await Post.create({
       title,
       content,
       author: req.user._id,
-      tags: tagIds
+      tags: cleanTags
     });
-    const populated = await post.populate('author', 'username email role').populate('tags', 'name');
+
+    const populated = await post.populate('author', 'username email role');
     res.status(201).json({ message: 'Post created', post: populated });
   } catch (err) {
     res.status(400).json({ message: 'Create post failed', error: err.message });
   }
 };
 
-exports.getAllPosts = async (req, res) => {
+const getAllPosts = async (req, res) => {
   try {
     const { tag } = req.query;
     let filter = {};
     if (tag) {
-      const t = await Tag.findOne({ name: String(tag).toLowerCase() });
-      filter = t ? { tags: t._id } : { _id: null }; // no results if tag not found
+      filter.tags = String(tag).toLowerCase().trim();
     }
+
     const posts = await Post.find(filter)
       .sort({ createdAt: -1 })
-      .populate('author', 'username email role')
-      .populate('tags', 'name');
+      .populate('author', 'username email role');
+
     res.json({ count: posts.length, posts });
   } catch (err) {
     res.status(500).json({ message: 'Fetch posts failed', error: err.message });
   }
 };
 
-exports.getPostById = async (req, res) => {
+const getPostById = async (req, res) => {
   try {
     const post = await Post.findById(req.params.postId)
       .populate('author', 'username email role')
-      .populate('tags', 'name')
       .populate('comments.user', 'username email role');
     if (!post) return res.status(404).json({ message: 'Post not found' });
     res.json({ post });
@@ -59,7 +49,7 @@ exports.getPostById = async (req, res) => {
   }
 };
 
-exports.deletePost = async (req, res) => {
+const deletePost = async (req, res) => {
   try {
     const post = await Post.findById(req.params.postId).populate('author', 'id username role');
     if (!post) return res.status(404).json({ message: 'Post not found' });
@@ -77,7 +67,7 @@ exports.deletePost = async (req, res) => {
   }
 };
 
-exports.addComment = async (req, res) => {
+const addComment = async (req, res) => {
   try {
     const { text } = req.body;
     if (!text || !text.trim()) return res.status(400).json({ message: 'Text is required' });
@@ -88,16 +78,14 @@ exports.addComment = async (req, res) => {
     post.comments.push({ user: req.user._id, text: text.trim() });
     await post.save();
 
-    const populated = await Post.findById(post._id)
-      .populate('comments.user', 'username email role');
-
+    const populated = await Post.findById(post._id).populate('comments.user', 'username email role');
     res.status(201).json({ message: 'Comment added', comments: populated.comments });
   } catch (err) {
     res.status(400).json({ message: 'Add comment failed', error: err.message });
   }
 };
 
-exports.toggleUpvote = async (req, res) => {
+const toggleUpvote = async (req, res) => {
   try {
     const post = await Post.findById(req.params.postId);
     if (!post) return res.status(404).json({ message: 'Post not found' });
@@ -116,4 +104,13 @@ exports.toggleUpvote = async (req, res) => {
   } catch (err) {
     res.status(400).json({ message: 'Toggle upvote failed', error: err.message });
   }
+};
+
+module.exports = {
+  createPost,
+  getAllPosts,
+  getPostById,
+  deletePost,
+  addComment,
+  toggleUpvote
 };

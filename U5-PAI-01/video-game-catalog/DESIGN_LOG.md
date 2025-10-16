@@ -56,22 +56,3 @@ MVC Pattern: Code organization and separation of concerns.
 MongoDB/Mongoose: Database connection, CRUD operations (create, find, findById, findByIdAndUpdate, findByIdAndDelete).
 Mongoose Schemas: Defining schemas with types, validations (required, unique, enum, min).
 Mongoose Relationships: Establishing a one-to-many relationship using ref and using populate() to retrieve related data.
-
-        
-[dotenv@17.2.1] injecting env (2) from .env -- tip: 🔐 prevent committing .env to code: https://dotenvx.com/precommit
-Server running on port 5000
-MongoDB connection error MongoParseError: option usernewparser is not supported       
-    at parseOptions (C:\js\learn\unit5\assignments\sprint-01\day-4\U5-PAI-01\video-game-catalog\node_modules\mongodb\lib\connection_string.js:273:15)
-    at new MongoClient (C:\js\learn\unit5\assignments\sprint-01\day-4\U5-PAI-01\video-game-catalog\node_modules\mongodb\lib\mongo_client.js:66:61)
-    at NativeConnection.createClient (C:\js\learn\unit5\assignments\sprint-01\day-4\U5-PAI-01\video-game-catalog\node_modules\mongoose\lib\drivers\node-mongodb-native\connection.js:343:14)
-    at NativeConnection.openUri (C:\js\learn\unit5\assignments\sprint-01\day-4\U5-PAI-01\video-game-catalog\node_modules\mongoose\lib\connection.js:1071:34)
-    at Mongoose.connect (C:\js\learn\unit5\assignments\sprint-01\day-4\U5-PAI-01\video-game-catalog\node_modules\mongoose\lib\mongoose.js:450:15)
-ents\sprint-01\day-4\U5-PAI-01\video-game-catalog\config\db.js:5:24)
-    at Object.<anonymous> (C:\js\learn\unit5\assignments\sprint-01\day-4\U5-PAI-01\video-game-catalog\server.js:10:1)       
-    at Module._compile (node:internal/modules/cjs/loader:1730:14)
-    at Object..js (node:internal/modules/cjs/loader:1895:10)  
-    at Module.load (node:internal/modules/cjs/loader:1465:32) {
-  errorLabelSet: Set(0) {}
-}
-
-

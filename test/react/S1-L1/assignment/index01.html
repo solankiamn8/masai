@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root">Hello from DOM</div>
+  </body>
+  <script type="text/babel">
+    let { useState } = React;
+    function App() {
+      let [list, setlist] = useState(["React", "JavaScript", "CSS"]);
+      let [color, setColor] = useState("black");
+
+      return (
+        <>
+          <p>Hello from React</p>
+          {list.map((item, index) => (
+            <div
+              onClick={() => {
+                item == "React" ? setColor("red") : setColor("black");
+              }}
+              key={index}
+              style={{ color: item == "React" ? color : "black" }}
+            >
+              {item}
+            </div>
+          ))}
+        </>
+      );
+    }
+
+    function Form() {
+      let initialForm = {
+        name: "",
+        gender: "",
+        age: "",
+      }
+      let [form, setForm] = useState(initialForm);
+
+      function handleChange(e){
+        let name = e.target.name
+        let value = e.target.value
+        setForm({...form, [name]:value})
+
+      }
+
+      function handleSubmit(e){
+        e.preventDefault()
+        console.log(form)
+        setForm(initialForm)
+      }
+
+      return (
+        <div style={{ border: "2px solid black", padding: "10px" }}>
+          <form onSubmit={handleSubmit}>
+            <label>
+              Name : <input onChange={handleChange} value={form.name} name="name" type="text" />
+            </label>
+            <br />
+            <label>
+              Gender : <input onChange={handleChange} value={form.gender} name="gender" type="text" />
+            </label>
+            <br />
+            <label>
+              Age : <input onChange={handleChange} value={form.age} name="age" type="number" />
+            </label>
+            <br />
+            <button type="submit">Submit</button>
+          </form>
+        </div>
+      );
+    }
+    let root = ReactDOM.createRoot(document.getElementById("root"));
+    root.render(
+      <>
+        <App />
+        <Form />
+      </>
+    );
+  </script>
+</html>
