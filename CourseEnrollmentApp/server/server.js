@@ -9,8 +9,8 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/api/auth", require("./routes/auth"));
-// app.use("/api/courses", require("./routes/courses"));
-// app.use("/api/enroll", require("./routes/enroll"));
+app.use("/api/courses", require("./routes/courses"));
+app.use("/api/enroll", require("./routes/enroll"));
 
 app.get("/", (req, res) => {
   res.send({ message: "Hello" });

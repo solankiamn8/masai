@@ -18,17 +18,19 @@ router.post("/", protect, admin, async (req, res) => {
 // Get all courses
 router.get("/", async (req, res) => {
   const { page = 1, limit = 10, keyword } = req.query;
-  const query = keyword ? { title: { $regex: keyword, $option: "i" } } : {};
-  const courses = await Course.find(query).skip(
-    (page - 1) * limit(parseInt(limit))
-  );
+  const query = keyword ? { title: { $regex: keyword, $options: "i" } } : {};
+  const courses = await Course.find(query)
+    .skip((page - 1) * parseInt(limit))
+    .limit(parseInt(limit));
   res.json(courses);
 });
 
 // Update by Id
 router.put("/:id", protect, admin, async (req, res) => {
   try {
-    const course = await Course.findByIdAndUpdate(req.params.id, req.body);
+    const course = await Course.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+    });
     res.json(course);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -44,3 +46,5 @@ router.delete("/:id", protect, admin, async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 });
+
+module.exports = router;
